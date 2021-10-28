@@ -1,21 +1,3 @@
-# Apache Software Foundation(ASF)에 대한 라이센스 1개
-# 이상의 기여자 라이센스 계약. NOTICE 파일 참조
-# 추가 정보를 위해 본 작업과 함께 배포됨
-# 저작권 소유권 관련. ASF에서 이 파일의 라이센스를 부여합니다.
-# 버전 2.0(Apache License, 버전 2.0)으로
-# "라이센스"; 이 파일은 규정 준수를 제외하고 사용할 수 없습니다.
-# 라이센스를 가지고 있습니다. 라이센스 사본은 다음 주소에서 얻을 수 있습니다.
-#
-# http://www.apache.org/licenses/LICENSE-2.0
-#
-♪ 관련 법률이 요구하거나 서면으로 동의하지 않는 한
-# 라이센스로 배포되는 소프트웨어는
-# 보증이나 조건 없이 "있는 그대로"
-♪ 표현적이든 묵시적이든 친절해 에 대한 라이센스 참조
-# 허가 및 제한을 관리하는 특정 언어
-# 라이센스 하에.
-#
-
 # Redis 및 Postgre가 포함된 CeleryExecutor의 기본 기류 클러스터 구성SQL.
 #
 # 경고: 이 구성은 현지 개발용입니다. 프로덕션 배포에 사용하지 마십시오.
@@ -38,23 +20,22 @@
 #
 # 이 파일을 원하는 대로 수정하십시오.
 ---
-
 version: '3'
 x-airflow-common:
   &airflow-common
   # 사용자 정의 종속성을 추가하거나 공급자 패키지를 업그레이드하기 위해 확장 이미지를 사용할 수 있습니다.
-# 이미지 라인에 설명을 추가하고 Docker 파일을 Docker-composition 디렉터리에 배치합니다.얌을
-# 및 아래의 "빌드" 라인에서 주석 처리를 해제한 다음 '도커 컴포지트 빌드'를 실행하여 이미지를 빌드합니다.
-
+  # 이미지 라인에 설명을 추가하고 Docker 파일을 Docker-composition 디렉터리에 배치합니다.얌을
+  # 및 아래의 "빌드" 라인에서 주석 처리를 해제한 다음 '도커 컴포지트 빌드'를 실행하여 이미지를 빌드합니다.
+  
   # 모든 서비스에 적용할 명령 설정
   image: ${AIRFLOW_IMAGE_NAME:-apache/airflow:2.2.0} # airflow 이미지
   # build: .
   environment: # airflow 환경 변수 커스터마이징
-    &airflow-common-env
+    &airflow-common-env 
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor # 사용할 Executor 종류
-    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow # 메타 데이터베이스
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow # 메타 데이터 베이스
-    AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0 #브로커 redis
+    AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
+    AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0 # 브로커 redis
     AIRFLOW__CORE__FERNET_KEY: '' # 암호화를 위한 유한 키
     AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
@@ -87,7 +68,7 @@ services:
       retries: 5
     restart: always
 
-  redis: # 브로커
+  redis:  # 브로커
     image: redis:latest
     expose:
       - 6379
@@ -97,7 +78,6 @@ services:
       timeout: 30s
       retries: 50
     restart: always
-
 
   airflow-webserver: # 웹 서버
     <<: *airflow-common
@@ -163,9 +143,9 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-        
+
   airflow-init: # airflow 초기화를 담당
-    # airflow를 수동으로 설치할 때, 해야할 일은 airflowDB init, upgrade를 실행한 후 airflow-ini가 하는 일과 정확히 일치하는 사용자를 생성한다.
+  # airflow를 수동으로 설치할 때, 해야할 일은 airflowDB init, upgrade를 실행한 후 airflow-ini가 하는 일과 정확히 일치하는 사용자를 생성한다.
     <<: *airflow-common
     entrypoint: /bin/bash
     # yamllint disable rule:line-length
@@ -235,7 +215,7 @@ services:
     environment:
       <<: *airflow-common-env
       _AIRFLOW_DB_UPGRADE: 'true'
-      _AIRFLOW_WWW_USER_CREATE: 'true' # USER 생성
+      _AIRFLOW_WWW_USER_CREATE: 'true'
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
     user: "0:0"
