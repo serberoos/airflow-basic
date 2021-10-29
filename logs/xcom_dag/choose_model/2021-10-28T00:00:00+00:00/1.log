@@ -1,0 +1,48 @@
+[2021-10-29 02:42:05,700] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: xcom_dag.choose_model scheduled__2021-10-28T00:00:00+00:00 [queued]>
+[2021-10-29 02:42:05,836] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: xcom_dag.choose_model scheduled__2021-10-28T00:00:00+00:00 [queued]>
+[2021-10-29 02:42:05,836] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 02:42:05,836] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-29 02:42:05,836] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 02:42:06,079] {taskinstance.py:1262} INFO - Executing <Task(PythonOperator): choose_model> on 2021-10-28 00:00:00+00:00
+[2021-10-29 02:42:06,210] {standard_task_runner.py:52} INFO - Started process 3837 to run task
+[2021-10-29 02:42:06,144] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'xcom_dag', 'choose_model', 'scheduled__2021-10-28T00:00:00+00:00', '--job-id', '35', '--raw', '--subdir', 'DAGS_FOLDER/xcom_dags.py', '--cfg-path', '/tmp/tmpw929x82x', '--error-file', '/tmp/tmp27j98vfv']
+[2021-10-29 02:42:06,216] {standard_task_runner.py:77} INFO - Job 35: Subtask choose_model
+[2021-10-29 02:42:06,775] {logging_mixin.py:109} INFO - Running <TaskInstance: xcom_dag.choose_model scheduled__2021-10-28T00:00:00+00:00 [running]> on host 28ad64d5edf5
+[2021-10-29 02:42:07,213] {taskinstance.py:1414} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=xcom_dag
+AIRFLOW_CTX_TASK_ID=choose_model
+AIRFLOW_CTX_EXECUTION_DATE=2021-10-28T00:00:00+00:00
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2021-10-28T00:00:00+00:00
+[2021-10-29 02:42:07,214] {logging_mixin.py:109} INFO - choose best model
+[2021-10-29 02:42:07,266] {logging_mixin.py:109} INFO - [0.2016082000429842, 3.414858723910341, 3.58696914740662]
+[2021-10-29 02:42:07,266] {python.py:152} INFO - Done. Returned value was: 3.58696914740662
+[2021-10-29 02:42:07,515] {taskinstance.py:1280} INFO - Marking task as SUCCESS. dag_id=xcom_dag, task_id=choose_model, execution_date=20211028T000000, start_date=20211029T024205, end_date=20211029T024207
+[2021-10-29 02:42:07,598] {local_task_job.py:154} INFO - Task exited with return code 0
+[2021-10-29 02:42:07,811] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2021-10-29 02:42:38,791] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: xcom_dag.choose_model manual__2021-10-29T02:42:11.747219+00:00 [queued]>
+[2021-10-29 02:42:39,761] {taskinstance.py:1035} INFO - Dependencies all met for <TaskInstance: xcom_dag.choose_model manual__2021-10-29T02:42:11.747219+00:00 [queued]>
+[2021-10-29 02:42:39,761] {taskinstance.py:1241} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 02:42:39,761] {taskinstance.py:1242} INFO - Starting attempt 1 of 1
+[2021-10-29 02:42:39,761] {taskinstance.py:1243} INFO - 
+--------------------------------------------------------------------------------
+[2021-10-29 02:42:40,077] {taskinstance.py:1262} INFO - Executing <Task(PythonOperator): choose_model> on 2021-10-29 02:42:11.747219+00:00
+[2021-10-29 02:42:40,473] {standard_task_runner.py:76} INFO - Running: ['***', 'tasks', 'run', 'xcom_dag', 'choose_model', 'manual__2021-10-29T02:42:11.747219+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/xcom_dags.py', '--cfg-path', '/tmp/tmpzcne6am7', '--error-file', '/tmp/tmp18hp4xb7']
+[2021-10-29 02:42:40,474] {standard_task_runner.py:77} INFO - Job 40: Subtask choose_model
+[2021-10-29 02:42:40,319] {standard_task_runner.py:52} INFO - Started process 3864 to run task
+[2021-10-29 02:42:41,287] {logging_mixin.py:109} INFO - Running <TaskInstance: xcom_dag.choose_model manual__2021-10-29T02:42:11.747219+00:00 [running]> on host 28ad64d5edf5
+[2021-10-29 02:42:42,246] {taskinstance.py:1414} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=xcom_dag
+AIRFLOW_CTX_TASK_ID=choose_model
+AIRFLOW_CTX_EXECUTION_DATE=2021-10-29T02:42:11.747219+00:00
+AIRFLOW_CTX_DAG_RUN_ID=manual__2021-10-29T02:42:11.747219+00:00
+[2021-10-29 02:42:42,247] {logging_mixin.py:109} INFO - choose best model
+[2021-10-29 02:42:42,816] {logging_mixin.py:109} INFO - [0.2016082000429842, 3.414858723910341, 3.58696914740662]
+[2021-10-29 02:42:42,817] {python.py:152} INFO - Done. Returned value was: 3.58696914740662
+[2021-10-29 02:42:43,451] {taskinstance.py:1280} INFO - Marking task as SUCCESS. dag_id=xcom_dag, task_id=choose_model, execution_date=20211029T024211, start_date=20211029T024238, end_date=20211029T024243
+[2021-10-29 02:42:43,733] {local_task_job.py:154} INFO - Task exited with return code 0
+[2021-10-29 02:42:44,104] {local_task_job.py:264} INFO - 0 downstream tasks scheduled from follow-on schedule check
