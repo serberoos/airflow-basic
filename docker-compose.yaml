@@ -41,8 +41,9 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'true'
     AIRFLOW__API__AUTH_BACKEND: 'airflow.api.auth.backend.basic_auth'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
+  
   volumes: #volume 안에 파일을 넣으면 로컬 컨테이너에 자동으로 동기화된다.
-    - ./dags:/opt/airflow/dags # ex) dac.py를 만들고 dags에 넣으면 자동으로
+    - ./dags:/opt/airflow/dags # ex) dac.py를 만들고 dags에 넣으면 자동으로 컨테이너에 동기화 된다.
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0" #컴퓨터와 컨테이너 간에 권한이 동일한지 확인
