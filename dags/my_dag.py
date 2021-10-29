@@ -72,5 +72,5 @@ with DAG("my_dag", start_date = datetime(2021, 1, 1),schedule_interval="@daily",
     [training_model_A,training_model_B,training_model_C] >> choose_best_model >> [accurate, inaccurate]
 
     # 처음 실행하게 되면 default DAG들이 있고 지워지지 않는데 airflow Home에서 airflow.cfg 파일에서 load_examples =False로 설정하면 된다.
-    # => airflow를 docker-compose를 통해서 실행 했기 때문에 webserver container의 airflow.cfg 파일을 수정해주어야 함.
+    # => airflow를 docker-compose를 통해서 실행 했기 때문에 yaml 파일의 AIRFLOW__CORE__LOAD_EXAMPLES: 'false' 환경변수를 설정한다.
     # => web UI의 상단 메뉴 [ Admin  ->  Configuration ]에서 airflow.cfg 파일을 조회할 수 있다.
