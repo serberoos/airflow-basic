@@ -1,0 +1,8 @@
+[2021-10-31 23:59:48,703] {processor.py:163} INFO - Started process (PID=77) to work on /opt/airflow/dags/branching_dag.py
+[2021-10-31 23:59:48,703] {processor.py:620} INFO - Processing file /opt/airflow/dags/branching_dag.py for tasks to queue
+[2021-10-31 23:59:48,704] {logging_mixin.py:109} INFO - [2021-10-31 23:59:48,703] {dagbag.py:500} INFO - Filling up the DagBag from /opt/airflow/dags/branching_dag.py
+[2021-10-31 23:59:49,727] {logging_mixin.py:109} WARNING - /home/airflow/.local/lib/python3.6/site-packages/airflow/operators/dummy.py:34 DeprecationWarning: none_failed_or_skipped Trigger Rule is deprecated. Please use `none_failed_min_one_success`.
+[2021-10-31 23:59:49,976] {processor.py:632} INFO - DAG(s) dict_keys(['branching']) retrieved from /opt/airflow/dags/branching_dag.py
+[2021-10-31 23:59:50,052] {logging_mixin.py:109} INFO - [2021-10-31 23:59:50,052] {dag.py:2389} INFO - Sync 1 DAGs
+[2021-10-31 23:59:50,193] {logging_mixin.py:109} INFO - [2021-10-31 23:59:50,193] {dag.py:2914} INFO - Setting next_dagrun for branching to 2021-10-31T00:00:00+00:00
+[2021-10-31 23:59:50,244] {processor.py:171} INFO - Processing /opt/airflow/dags/branching_dag.py took 4.172 seconds

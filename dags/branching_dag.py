@@ -40,9 +40,10 @@ with DAG('branching', schedule_interval='@daily', default_args=default_args, cat
     )
     # 해당 stroing task와 연결된 이전 task 중 하나라도 skip될 경우 함께 연결된 storing도 스킵된다. (이 경우 'accurate'와 'inaccurate' 둘중에 한개는 스킵되므로 storing은 무조건 스킵된다.)
     # => storing task의 trigger rule을 변경하면 해결 할 수 있다.
+
     storing = DummyOperator( 
         task_id='storing',
-        trigger_rule="none_failed_or_skipped" # 모든 부모 task가 전부 성공해야 자식 task가 실행되는 기본 trigger_rule을 변경한다. 
+        trigger_rule="none_failed_or_skipped" # 모든 부모 task가 전부 성공해야(의존성에 의해서) 자식 task가 실행되는 기본 trigger_rule을 변경한다. 
         # => 부모 task가 하나라도 성공하면 storing task는 실행될 수 있다.
     )
 
