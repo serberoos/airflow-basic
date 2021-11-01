@@ -5,13 +5,13 @@
 # * 다른 DAG가 실행이 완료될 때까지 기다리고 싶은가? : ExternalTaskSensor
 
 # AIRFLOW에는 이 외에도 더 많은 SENSOR들이 존재한다.
-from airflow.models import dag
+from airflow.models import DAG
 
 from datetime import datetime
 from airflow.sensors.filesystem import FileSensor
 
 with DAG('dag_sensor', schedule_interval='@daily', start_date=datetime, default_args = default_args, catchup=False) as dag:
-
+    default_args = {}
     waiting_for_file = FileSensor(
 
         # 1. poke_interval : 파일이 있는지 판단하는 연산의 주기
@@ -28,4 +28,4 @@ with DAG('dag_sensor', schedule_interval='@daily', start_date=datetime, default_
         #mode ='poke' # 기본값은 poke
         mode='reschedule', # 다른 interval 시간 중에 worker slot은 센서에 의해 점유되고 다른 센서가 켜질수 있게 release 된다.
         soft_fail=False # defalut = false / time_out 시간 동안 아무일도 없으면 센서를 스킵한다. True | execution timeout
-        )
+    )
